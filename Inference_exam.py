@@ -18,9 +18,9 @@ from collections import OrderedDict,namedtuple
 providers = ['AzureExecutionProvider', 'CPUExecutionProvider'] if cuda else ['CPUExecutionProvider']
 session = ort.InferenceSession(w, providers=providers)
 
-tf.compat.v1.disable_eager_execution() #
-with tf.compat.v1.Session() as sess:
-    x = tf.compat.v1.placeholder(tf.float32, [2])
+tf.compat.v1.disable_eager_execution() #TensorFlow 1.x 호환 모드로 전환
+with tf.compat.v1.Session() as sess:   #v1 추가 
+    x = tf.compat.v1.placeholder(tf.float32, [2]) #v1 추가
     x2 = tf.square(x)
     print(sess.run(x2, feed_dict={x: [2, 3]}))
     # [4. 9.]
