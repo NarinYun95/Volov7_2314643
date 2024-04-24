@@ -19,8 +19,8 @@ providers = ['CUDAExecutionProvider', 'CPUExecutionProvider'] if cuda else ['CPU
 session = ort.InferenceSession(w, providers=providers)
 
 # TensorFlow 1.x 호환 모드로 전환
-tf.compat.v1.disable_eager_execution() #
-with tf.compat.v1.Session() as sess: #
+tf.compat.v1.disable_eager_execution() #v1 추가
+with tf.compat.v1.Session() as sess: #v1 추가
     x = tf.compat.v1.placeholder(tf.float32, [2])
     x2 = tf.square(x)
     print(sess.run(x2, feed_dict={x: [2, 3]}))
